@@ -1,4 +1,4 @@
-#This is our origional urls.py file that comes in our project.
+# This is our origional urls.py file that comes in our project.
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
