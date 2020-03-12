@@ -1,9 +1,39 @@
+.body {
+    perspective: 500px; 
+}
+
+.card {
+    height: 200px;
+    width: 200px;
+    position: relative;
+    transform: rotateX(.25turn);
+    transition: .5s all ease-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,.3);
+}
+
+.card:hover {
+    transform: rotateY(.5turn) scale(1.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,.16);
+}
+
+.card > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
 .card__front {
-    background-color: blue;
-
-
+    background: pink;
 }
 
 .card__back {
-    background-color: red;
+    background: lightblue;
+    opacity: 0;
+    transition-delay: .17s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotateY(.5turn);
 }
