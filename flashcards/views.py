@@ -2,9 +2,38 @@
 from django.shortcuts import render
 from . models import FlashCard
 
-def home(request):
+def flashCard(request):
     cards = FlashCard.objects.all()
     return render(request, 'flashcards/home.html', {'cards': cards})
+
+def createDeck(request):
+    form = DeckForm(request.POST)
+
+
+def flashCard_new(request):
+    if request.method == 'POST':
+        form = FlashCard(request.POST)
+        if form.is_valid():
+            flashCard = form.save()
+            return redirect('todos-detail', pk=todo.pk)
+    else:
+        form = TodoForm()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # def add(request):
 #     from random import randint
