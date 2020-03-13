@@ -2,6 +2,15 @@
 from django.db import models
 from users.models import User
 
+class User(models.Model):
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(to=User,
+                             on_delete=models.CASCADE,
+                             related_name='user')
+
+    def __str__(self):
+        return self.name
+
 
 class FlashCard(models.Model):
     front = models.CharField(blank=True, null=True, max_length=100)

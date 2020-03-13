@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block heading %}
+<h2>Flashcard list</h2>
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'flashcard_new' %}" class="button">New Flashcard</a>
+{% for card in cards %}
+<div class="flashCard" id="{{flashCard.pk}}">
+  <a style="font-weight: bold;" href="{% url 'flashcard_detail' flashCard.pk %}">{{ flashCard.item }}</a>
+  <p>{{ flashCard.description }}</p>
+  {% comment %} <a class='f6 link dim br-pill ph4 dib white bg-hot-pink' href='{% url "todos-by-tag" todo.tag.slug %}'>{{todo.tag}}</p> {% endcomment %}
+</div>
+{% endfor %}
+{% endblock %}

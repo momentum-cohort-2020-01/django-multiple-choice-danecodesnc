@@ -7,6 +7,13 @@ from flashcards import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.flashCard, name="flashCard"),
-    # path('', forms.home, name="flashCard"),
+    path('flashCard/new/', views.flashCard_new, name='flashcard_new'),
+    # path('flashCard/<int:pk>/', views.flashCard_detail, name='flashcard_detail'),
+    path('flashCard/<int:pk>/edit/', views.flashCard_edit, name='flashcard_edit'),
+    path('flashCard/<int:pk>/delete/', views.flashCard_delete, name='flashcard_delete'), 
+    # path('flashcard/', views.create_user, name="create_user"),
+    path('admin/', admin.site.urls),
+
+
        
 ]

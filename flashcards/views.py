@@ -1,6 +1,15 @@
 #This is part of our app.
 from django.shortcuts import render
 from . models import FlashCard
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def homepage(request):
+    users = request.user.all()
+    return render(request, "flashcard/home.html", {
+        "user": users,
+    })
 
 def flashCard(request):
     cards = FlashCard.objects.all()
@@ -15,10 +24,25 @@ def flashCard_new(request):
         form = FlashCard(request.POST)
         if form.is_valid():
             flashCard = form.save()
-            return redirect('todos-detail', pk=todo.pk)
+            return redirect('flashcard_new', pk=flashCard.pk)
     else:
-        form = TodoForm()
+        form = CardForm()
 
+def flashCard_edit(request, pk):
+    flashCard = get_object_or_404(flashCard, pk=pk)
+    if request.method == 'POST':
+        form = CardForm(request.POST, instance=flashCard)
+        if form.is_valid():
+            form.save()
+            return redirect('flashcard_edit', pk=flashCard.pk)
+    else:
+        form = CardForm(instance=flashCard)
+    
+def flashCard_delete(request, pk):
+    flashCard = get_object_or_404(flashCard, pk=pk)
+    flashCard.delete()
+    return redirect('flashcard_list')
+    
 
 
 
