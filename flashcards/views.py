@@ -21,7 +21,7 @@ def createDeck(request):
 
 def flashCard_new(request):
     if request.method == 'POST':
-        form = FlashCard(request.POST)
+        form = CardForm(request.POST)
         if form.is_valid():
             flashCard = form.save()
             return redirect('flashcard_new', pk=flashCard.pk)

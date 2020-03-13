@@ -5,6 +5,8 @@
 <h1>Here are my cards!</h1>
     
 
+<a href="(% url 'flashcard_new' %}" class="button">New Card</a>
+
 {% for card in cards %}
 <ul>{{flashcard}}</ul>
 
@@ -15,6 +17,10 @@
     <div class="card">
         <div class="card__front">{{ card.front }}</div>
         <div class="card__back">{{ card.back }}</div>  
+
+
+<a href="(% url 'flashcard_edit' card.pk % }" class="button">Edit Card</a>
+<a href="(% url 'flashcard_edit' card.pk % }" class="button">Delete Card</a>         
     </div>
   </div>
 
