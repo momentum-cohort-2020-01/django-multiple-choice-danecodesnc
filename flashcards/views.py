@@ -1,5 +1,5 @@
 #This is part of our app.
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from . models import FlashCard
 from django.contrib.auth.decorators import login_required
 
