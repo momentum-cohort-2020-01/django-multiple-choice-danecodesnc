@@ -25,25 +25,26 @@ def flashCard_new(request):
         form = CardForm(request.POST)
         if form.is_valid():
             flashCard = form.save()
-            return redirect('flashcard_new', pk=flashCard.pk)
+            return redirect('home')
     else:
         form = CardForm()
         return render(request,'flashcards/flashcard_new.html', {'form': form})
 
 def flashCard_edit(request, pk):
-    flashCard = get_object_or_404(flashCard, pk=pk)
+    flashCard = get_object_or_404(FlashCard, pk=pk)
     if request.method == 'POST':
         form = CardForm(request.POST, instance=flashCard)
         if form.is_valid():
             form.save()
-            return redirect('flashcard_edit', pk=flashCard.pk)
+            return redirect('home')
     else:
         form = CardForm(instance=flashCard)
+        return render(request,'flashcards/flashcard_edit.html', {'form': form})
     
 def flashCard_delete(request, pk):
-    flashCard = get_object_or_404(flashCard, pk=pk)
+    flashCard = get_object_or_404(FlashCard, pk=pk)
     flashCard.delete()
-    return redirect('flashcard_list')
+    return redirect('home')
     
 
 

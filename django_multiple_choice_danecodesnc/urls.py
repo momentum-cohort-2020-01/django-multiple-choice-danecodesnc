@@ -5,8 +5,8 @@ from django.conf import settings
 from flashcards import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.flashCard, name="flashCard"),
+    
+    path('', views.flashCard, name="home"),
     path('flashCard/new/', views.flashCard_new, name='flashcard_new'),
     # path('flashCard/<int:pk>/', views.flashCard_detail, name='flashcard_detail'),
     path('flashCard/<int:pk>/edit/', views.flashCard_edit, name='flashcard_edit'),
