@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from .models import Deck
 from django import forms
-from .models import Post
+from .models import User, FlashCard, Deck
 
 class DeckForm(ModelForm):
     '''
@@ -14,5 +14,5 @@ class DeckForm(ModelForm):
 class CardForm(forms.ModelForm):
 
     class Meta:
-        model = Deck
+        model = FlashCard
         fields = ['front', 'back', 'deck']

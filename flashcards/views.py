@@ -1,10 +1,11 @@
 #This is part of our app.
 from django.shortcuts import render, redirect, get_object_or_404
-from . models import FlashCard
+from .models import FlashCard
 from django.contrib.auth.decorators import login_required
+from .forms import CardForm, DeckForm
 
 
-@login_required
+
 def homepage(request):
     users = request.user.all()
     return render(request, "flashcard/home.html", {
@@ -27,6 +28,7 @@ def flashCard_new(request):
             return redirect('flashcard_new', pk=flashCard.pk)
     else:
         form = CardForm()
+        return render(request,'flashcards/flashcard_new.html', {'form': form})
 
 def flashCard_edit(request, pk):
     flashCard = get_object_or_404(flashCard, pk=pk)

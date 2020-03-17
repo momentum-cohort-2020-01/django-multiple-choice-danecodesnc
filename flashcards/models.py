@@ -1,4 +1,3 @@
-# This is part of our app.
 from django.db import models
 from users.models import User
 
@@ -21,7 +20,7 @@ class FlashCard(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.front}'
+        return f'{self.front} {self.back}'
 
 
 class Deck(models.Model):
@@ -30,7 +29,7 @@ class Deck(models.Model):
     slug = models.SlugField(null=False, unique=True)
    
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.decks}'
     
     def save(self, *args, **kwargs):
         if not self.slug:
