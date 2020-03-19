@@ -16,8 +16,8 @@
 <div class ="deck">
  <h2>{{deck.subject}}</h2>
         <div class='minilinks-container'>
-            <a class='minilinks' href={% url 'add-card' %}>Add Cards</a>
-            <a class='minilinks' href={% url 'delete-deck' pk=deck.pk %}>Delete Deck</a>
+            <a class='minilinks' href={% url 'flashcard_new' %}>Add Cards</a>
+            {% comment %} <a class='minilinks' href={% url 'flashcard_delete' pk=deck.pk %}>Delete Deck</a> {% endcomment %}
         </div>
 
 

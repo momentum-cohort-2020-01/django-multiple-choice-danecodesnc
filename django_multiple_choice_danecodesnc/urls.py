@@ -7,6 +7,7 @@ from flashcards import views
 urlpatterns = [
     
     path('', views.homepage, name="home"),
+    path('flashcard/add_deck/', views.create_deck, name='add-deck'),
     path('flashcard/new/', views.flashcard_new, name='flashcard_new'),
     path('flashcard/<int:pk>/', views.flashcard, name='flashcard'),
     path('flashcard/<int:pk>/edit/', views.flashcard_edit, name='flashcard_edit'),

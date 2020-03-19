@@ -19,8 +19,15 @@ def flashcard(request, pk):
 
     return render(request, 'flashcards/home.html', {'deck': deck,'flashcards': flashcards, 'pk': pk})
 
-def createDeck(request):
-    form = DeckForm(request.POST)
+def create_deck(request):
+    if request.method == 'POST':
+        form = DeckForm(request.POST)
+        if form.is_valid():
+            deck = form.save()
+            return redirect('home')
+    else:
+        form = DeckForm()
+        return render(request,'flashcards/add_deck.html', {'form': form})
 
 
 def flashcard_new(request):
