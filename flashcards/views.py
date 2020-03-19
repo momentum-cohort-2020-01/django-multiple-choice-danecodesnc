@@ -1,49 +1,52 @@
 #This is part of our app.
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import FlashCard
+from .models import FlashCard, Deck
 from django.contrib.auth.decorators import login_required
 from .forms import CardForm, DeckForm
 
 
-
+# @login_required
 def homepage(request):
-    users = request.user.all()
-    return render(request, "flashcard/home.html", {
-        "user": users,
+    # users = request.user.all()
+    decks = Deck.objects.all()
+    return render(request, "flashcards/home.html", {
+        "decks": decks
     })
 
-def flashCard(request):
-    cards = FlashCard.objects.all()
-    return render(request, 'flashcards/home.html', {'cards': cards})
+def flashcard(request, pk):
+    deck = Deck.objects.get(pk=pk)    
+    flashcards = FlashCard.objects.all()
+
+    return render(request, 'flashcards/home.html', {'deck': deck,'flashcards': flashcards, 'pk': pk})
 
 def createDeck(request):
     form = DeckForm(request.POST)
 
 
-def flashCard_new(request):
+def flashcard_new(request):
     if request.method == 'POST':
         form = CardForm(request.POST)
         if form.is_valid():
-            flashCard = form.save()
+            flashcard = form.save()
             return redirect('home')
     else:
         form = CardForm()
         return render(request,'flashcards/flashcard_new.html', {'form': form})
 
-def flashCard_edit(request, pk):
-    flashCard = get_object_or_404(FlashCard, pk=pk)
+def flashcard_edit(request, pk):
+    flashcard = get_object_or_404(FlashCard, pk=pk)
     if request.method == 'POST':
-        form = CardForm(request.POST, instance=flashCard)
+        form = CardForm(request.POST, instance=flashcard)
         if form.is_valid():
             form.save()
             return redirect('home')
     else:
-        form = CardForm(instance=flashCard)
+        form = CardForm(instance=flashcard)
         return render(request,'flashcards/flashcard_edit.html', {'form': form})
     
-def flashCard_delete(request, pk):
-    flashCard = get_object_or_404(FlashCard, pk=pk)
-    flashCard.delete()
+def flashcard_delete(request, pk):
+    flashcard = get_object_or_404(FlashCard, pk=pk)
+    flashcard.delete()
     return redirect('home')
     
 

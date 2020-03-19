@@ -1,14 +1,12 @@
 from django.db import models
 from users.models import User
 
-class User(models.Model):
-    name = models.CharField(max_length=255)
-    user = models.ForeignKey(to=User,
-                             on_delete=models.CASCADE,
-                             related_name='user')
+# class User(models.Model):
+#     name = models.CharField(max_length=255)
+   
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 class FlashCard(models.Model):
@@ -27,15 +25,19 @@ class Deck(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=100, null=False, blank=True)
     slug = models.SlugField(null=False, unique=True)
+    user = models.ForeignKey(
+        User, null=True, related_name='decks', on_delete=models.CASCADE)
    
     def __str__(self):
-        return f'{self.decks}'
+        return f'{self.title} {self.description}'
     
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        return super().save(*args, **kwargs)    
-    
+    # def save(self, *args, **kwargs):
+    #     if not self.slug:
+    #         self.slug = slugify(self.name)
+    #     return super().save(*args, **kwargs) 
+    # 
+
+
 
 
 

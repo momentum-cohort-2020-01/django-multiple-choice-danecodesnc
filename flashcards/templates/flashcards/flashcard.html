@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Welcome to Flashcards!</h1>
+    
+<a href="{% url 'flashcard_new' %}" class="button">New Card</a>
+<div class ="all-cards">
+{% for card in cards %}
+
+<div class ="card-info">
+<a href="{% url 'flashcard_edit' card.pk %}" class="button">Edit Card</a>
+<a href="{% url 'flashcard_delete' card.pk %}" class="button">Delete Card</a> 
+
+<div class="hover-area">
+
+   
+   <div class ="container">
+    <div class="card">
+        <div class="card__front">{{ card.front }}</div>
+        <div class="card__back">{{ card.back }}</div>  
+
+      
+    </div>
+  </div>
+
+
+</div>
+</div>
+
+{% endfor %}
+</div>
+{% endblock %}

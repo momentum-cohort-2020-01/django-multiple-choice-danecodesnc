@@ -6,11 +6,11 @@ from flashcards import views
 
 urlpatterns = [
     
-    path('', views.flashCard, name="home"),
-    path('flashCard/new/', views.flashCard_new, name='flashcard_new'),
-    # path('flashCard/<int:pk>/', views.flashCard_detail, name='flashcard_detail'),
-    path('flashCard/<int:pk>/edit/', views.flashCard_edit, name='flashcard_edit'),
-    path('flashCard/<int:pk>/delete/', views.flashCard_delete, name='flashcard_delete'), 
+    path('', views.homepage, name="home"),
+    path('flashcard/new/', views.flashcard_new, name='flashcard_new'),
+    path('flashcard/<int:pk>/', views.flashcard, name='flashcard'),
+    path('flashcard/<int:pk>/edit/', views.flashcard_edit, name='flashcard_edit'),
+    path('flashcard/<int:pk>/delete/', views.flashcard_delete, name='flashcard_delete'), 
     # path('flashcard/', views.create_user, name="create_user"),
     path('admin/', admin.site.urls),
 
