@@ -16,19 +16,17 @@
 <div class ="deck">
  <h2>{{deck.subject}}</h2>
         <div class='minilinks-container'>
-            <a class='minilinks' href={% url 'flashcard_new' %}>Add Cards</a>
-            {% comment %} <a class='minilinks' href={% url 'flashcard_delete' pk=deck.pk %}>Delete Deck</a> {% endcomment %}
+            <a class='minilinks' href={% url 'deck-delete' pk=deck.pk %}>Delete Deck</a>
         </div>
 
 
-<a href = {% url 'flashcard' pk=deck.pk %}
+<a href = {% url 'deck-detail' pk=deck.pk %}
 
+<h2> {{ deck.title }} </h2>
 
-
-    <h2> {{ deck.title }} </h2>
-
-
+</a>
 </div>
+
 
 
 {% endfor %}

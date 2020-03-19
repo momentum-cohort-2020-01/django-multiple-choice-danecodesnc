@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from django.utils.text import slugify
 
 # class User(models.Model):
 #     name = models.CharField(max_length=255)
@@ -13,7 +14,7 @@ class FlashCard(models.Model):
     front = models.CharField(blank=True, null=True, max_length=100)
     back = models.CharField(blank=True, null=True, max_length=100)
     deck = models.ForeignKey(
-        'Deck', on_delete=models.CASCADE, null=True, blank=True)
+        'Deck', on_delete=models.CASCADE, null=True, blank=True, related_name='cards')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -33,7 +34,7 @@ class Deck(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.title)
         return super().save(*args, **kwargs) 
     
 

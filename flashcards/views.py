@@ -55,6 +55,16 @@ def flashcard_delete(request, pk):
     flashcard = get_object_or_404(FlashCard, pk=pk)
     flashcard.delete()
     return redirect('home')
+
+def deck_detail(request, pk):
+    deck = get_object_or_404(Deck, pk=pk)
+    return render(request,'flashcards/deck_detail.html', {'deck': deck})
+
+def deck_delete(request, pk):
+    deck = get_object_or_404(Deck, pk=pk)
+    deck.delete()
+    return redirect('home')
+
     
 
 

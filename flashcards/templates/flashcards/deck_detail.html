@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+    <h1>Deck Details</h1>
+    <h2>{{deck.title}}</h2>
+    <h3>{{deck.description}}</h3>
+
+    {% for card in deck.cards.all %}
+
+    <div class="hover-area">
+
+   
+   <div class ="container">
+    <div class="card">
+        <div class="card__front">{{ card.front }}</div>
+        <div class="card__back">{{ card.back }}</div>  
+
+    </div>
+ </div>
+</div>
+   
+
+
+
+    {% endfor %}
+
+     
+
+     <a class='minilinks' href={% url 'flashcard_new' %}>Add Cards</a>
+    
+
+
+{% endblock %}
+
+  
